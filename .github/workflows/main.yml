@@ -1,0 +1,21 @@
+name: Unzip Files
+on: workflow_dispatch
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Unzip the file
+        run: |
+          unzip Android-Mod-Menu-main.zip
+          rm Android-Mod-Menu-main.zip
+          
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m "Unzipped files automatically"
+          git push
